@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="org.openmrs.module.ListMember">
+
+	<class name="org.openmrs.module.ListMember.ListMember"
+		table="list_member">
+		<id name="id" type="int" column="list_member_id" unsaved-value="0">
+			<generator class="native" />
+		</id>
+
+		<discriminator column="list_member_id" insert="false" />
+
+		<property name="uuid" type="java.lang.String" column="uuid"
+			length="38" unique="true" />
+
+		<many-to-one name="patient" class="org.openmrs.Patient" fetch="select">
+			<column name="patient_id" not-null="true" />
+		</many-to-one>
+
+		<property name="patientId" type="int" column="patient_id" />
+
+		<property name="providerPatientListId" type="int" column="provider_patient_list_id" />
+
+	</class>
+
+</hibernate-mapping>
